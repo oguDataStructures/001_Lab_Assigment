@@ -1,3 +1,8 @@
 ﻿  main.c
-C:\Users\yasem\Documents\GitHub\Data-Structures\Blobs\Blob\main.c(14,6): warning C4101: 'a': unreferenced local variable
-  Blob.vcxproj -> C:\Users\yasem\Documents\GitHub\Data-Structures\Blobs\Debug\Blob.exe
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,23): warning C4013: 'strtok' undefined; assuming extern returning int
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(15,29): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(22,18): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(26,18): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,2): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(35,7): warning C4101: 'dataToBeRead': unreferenced local variable
+  Blob.vcxproj -> D:\DSA_Lab\001_Lab_Assigment\Blobs\Debug\Blob.exe
