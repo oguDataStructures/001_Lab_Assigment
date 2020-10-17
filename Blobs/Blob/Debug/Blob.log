@@ -1,9 +1,9 @@
 ﻿  main.c
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(7,23): warning C4013: 'strtok' undefined; assuming extern returning int
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,29): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(7,2): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(32,25): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *(*)[2]'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(32,20): warning C4024: 'fetchRowCol': different types for formal and actual parameter 2
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(33,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(34,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
-  Blob.vcxproj -> D:\DSA_Lab\001_Lab_Assigment\Blobs\Debug\Blob.exe
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(6,22): warning C4013: 'strtok' undefined; assuming extern returning int
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(10,28): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(6,1): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(49,24): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *(*)[2]'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(49,24): warning C4024: 'fetchRowCol': different types for formal and actual parameter 2
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(50,15): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\main.c(51,15): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
+  Blob.vcxproj -> C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Debug\Blob.exe
