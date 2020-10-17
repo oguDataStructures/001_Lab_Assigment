@@ -1,8 +1,9 @@
 ﻿  main.c
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,23): warning C4013: 'strtok' undefined; assuming extern returning int
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(15,29): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(22,18): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(26,18): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,2): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
-D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(35,7): warning C4101: 'dataToBeRead': unreferenced local variable
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(7,23): warning C4013: 'strtok' undefined; assuming extern returning int
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(11,29): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(7,2): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(32,25): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *(*)[2]'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(32,20): warning C4024: 'fetchRowCol': different types for formal and actual parameter 2
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(33,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+D:\DSA_Lab\001_Lab_Assigment\Blobs\Blob\main.c(34,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
   Blob.vcxproj -> D:\DSA_Lab\001_Lab_Assigment\Blobs\Debug\Blob.exe

@@ -2,27 +2,14 @@
 #include <stdlib.h>
 #define SIZE 100
 
-	int  *fetchRowCol(char str[], int a) {
-		int *size[2];
+	void fetchRowCol(char str[] , int *size) {
 		int i = 0;
-		char* token = strtok(str, " ");// fetch first token , token= 10
+		char* token = strtok(str, " ");// fetch first token 
 		while (token != NULL) {
-			size[i] = atoi(token);//put the first token into array, size[0] = 10
+			size[i] = atoi(token);//put the tokens into array
 			i++;
 			token = strtok(NULL, " ");
 		}
-		for (int i = 0; i < 2; i++)
-		{
-			printf("%d\n", size[i]);
-		}
-		if (a % 2 == 0) {
-			return *size[0];
-		}
-		else
-		{
-			return *size[1];
-		}
-		
 	}
 
 
@@ -33,7 +20,7 @@ void main() {
 	int i = 0;
 	char arr[SIZE];
 	char* str;
-	int size[2];
+	int* size[2];
 
 	if (data == NULL)
 	{
@@ -42,25 +29,31 @@ void main() {
 	else
 	{
 		str = fgets(arr, 300, data); //fetch the first line of file in order to reach row and columns of 2D Array.
-		//printf("row:%d col:%d ", *fetchRowCol(str), *(fetchRowCol(str)+1));
-		for (int i = 0; i < 2; i++)
-		{
-			size[i] = *fetchRowCol(str, i);
-			printf("sada:%d", size[i]);
+		fetchRowCol(str, &size); // throw the string which is include first line with first index of adress of size array 
+		int row = size[0];
+		int col = size[1];
+		printf("row:%d\ncol:%d\n", row, col);
+
+		for (int i = 0; i < row; i++) {
+			printf("%d|", i);
+			for (int j = 0; j < col+1; j++) {
+				
+				
+				
+					dataToBeRead[i][j] = fgetc(data);
+					printf("%c", dataToBeRead[i][j]);
+				
+
+			}
+				
+	
+
 		}
-		/*int row = *(fetchRowCol(str));
-		printf("row: %d", row);
-		int col = *(fetchRowCol(str));
-		printf("col: %d", col);*/
+	}
 		fclose(data);			   
 		printf("\n");			   
 		system("pause");
-	}
+	
 }
-		/*for (int i = 0; i < satir; i++) {
-			printf("%d|", i);
-			for (int j = 0; j < sütün+1; j++) {
-				dataToBeRead[i][j] = fgetc(data);
-				printf("%c", dataToBeRead[i][j]);
-			}
-		}*/
+//dataToBeRead[l][k] = fgetc(data);
+//printf("%c", dataToBeRead[l][k]);
