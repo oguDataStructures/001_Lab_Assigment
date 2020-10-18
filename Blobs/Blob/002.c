@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 300
-char dataToBeRead[SIZE][SIZE];
 
 void fetchRowCol(char str[], int* size) {
 	int i = 0;
@@ -32,20 +31,21 @@ void horWall(int col) {
 	printf("\n");
 }
 
-int BlobCount(int N, int M, int r, int c)
+int BlobCount(int N, int M, int r, int c, int col, int* dataToBeRead)
 {
 	if (r < 0 || r >= N || c < 0 || c >= M)
 		return 0;
-	if (dataToBeRead[r][c] == ' ')
+	if (*(dataToBeRead + r * col + c) == ' ')
 		return 0;
-	if (dataToBeRead[r][c] == NULL) {
+	if (*(dataToBeRead + r * col + c) == NULL) {
 		return 0;
 	}
 	else
 	{
-		dataToBeRead[r][c] = ' ';
+		*(dataToBeRead + r * col + c) = ' ';
 		//((data + i) + j)
-		return (1 + BlobCount(N, M, r, c - 1) + BlobCount(N, M, r, c + 1) + BlobCount(N, M, r - 1, c) + BlobCount(N, M, r + 1, c));
+		return (1 + BlobCount(N, M, r, c - 1, col, dataToBeRead) + BlobCount(N, M, r, c + 1, col, dataToBeRead) +
+			BlobCount(N, M, r - 1, c, col, dataToBeRead) + BlobCount(N, M, r + 1, c, col, dataToBeRead));
 	}
 }
 
@@ -59,7 +59,6 @@ void main() {
 	int numberPixel;
 	int numberBloob = 0;
 	int blobCounter[SIZE];
-
 	if (data == NULL)
 	{
 		printf("Test.c file failed to open.");
@@ -70,14 +69,16 @@ void main() {
 		fetchRowCol(str, &size); // throw the string which is include first line with first index of adress of size array 
 		int row = size[0];// assign the value of row to variable
 		int col = size[1];//assign the value of column to variable 
+		int* dataToBeRead = (int*)malloc(row * col * sizeof(int));
 
 		horNumbers(col);
 		horWall(col);
 		for (int i = 0; i < row; i++) {
 			printf("%d|", i);
 			for (int j = 0; j < col + 1; j++) {
-				dataToBeRead[i][j] = fgetc(data);//get the character 1 by 1 and set to into 2D array
-				printf("%c", dataToBeRead[i][j]);
+				*(dataToBeRead + i * col + j) = fgetc(data);//get the character 1 by 1 and set to into 2D array
+				printf("%c", *(dataToBeRead + i * col + j));
+
 				if (j == col - 1) {
 					printf("| %d", i);
 				}//end-if
@@ -88,14 +89,13 @@ void main() {
 		printf("\n");
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				numberPixel = BlobCount(row, col, i, j);
+				numberPixel = BlobCount(row, col, i, j, col, dataToBeRead);
 				if (numberPixel > 0)
 				{
 					blobCounter[numberBloob] = numberPixel;
 					printf("\nBlob %d: %d", numberBloob, numberPixel);
 					numberBloob++;
 				}
-
 			}
 		}
 	}
