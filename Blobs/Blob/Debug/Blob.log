@@ -1,1 +1,13 @@
-﻿  Blob.vcxproj -> D:\001_Lab_Assigment\Blobs\Debug\Blob.exe
+﻿  005.c
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(7,22): warning C4013: 'strtok' undefined; assuming extern returning int
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(11,28): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(7,1): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(47,41): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(106,25): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *(*)[2]'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(106,25): warning C4024: 'fetchRowCol': different types for formal and actual parameter 2
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(138,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(139,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(107,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(108,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Blob\005.c(127,8): warning C4101: 'ptr': unreferenced local variable
+  Blob.vcxproj -> C:\Users\yasem\Desktop\LAB\001_Lab_Assigment\Blobs\Debug\Blob.exe
