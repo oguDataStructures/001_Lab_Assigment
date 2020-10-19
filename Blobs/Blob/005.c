@@ -31,8 +31,8 @@ void horWall(int col) {
 	printf("\n");
 }
 typedef struct {
-	int x;
-	int y;
+	float x;
+	float y;
 }newCoord;
 newCoord newCoord1;
 
@@ -49,8 +49,8 @@ int BlobCount(int N, int M, int r, int c, int* dataToBeRead)
 	}
 	else
 	{
-		newCoord1.x = r;
-		newCoord1.y = c;
+		newCoord1.x = newCoord1.x + r;
+		newCoord1.y = newCoord1.y + c;
 		*(dataToBeRead + r * M + c) = ' ';
 		pixelNum = (1 + BlobCount(N, M, r, c - 1, dataToBeRead) + BlobCount(N, M, r, c + 1, dataToBeRead) +
 			BlobCount(N, M, r - 1, c, dataToBeRead) + BlobCount(N, M, r + 1, c, dataToBeRead));
@@ -125,26 +125,29 @@ void main() {
 		horNumbers(col);//Making horizontal Border to bottom of table
 		printf("\n");
 		int* ptr;
-		int newCol, newRow;
+		float newCol, newRow;
 		float COMx, COMy;
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
+				newCoord1.x = 0;
+				newCoord1.y = 0;
 				numberPixel = BlobCount(row, col, i, j, dataToBeRead);
 
 				if (numberPixel > 0)
 				{
-					if (i == i + 1) {
-						newCoord1.x = 0;
-						newCoord1.y = 0;
-					}
-					newRow = newCoord1.x;
+					
+					/*newRow = newCoord1.x;
 					newCol = newCoord1.y;
 					COMx = COMX(newRow, newCol, tempArrayOfData, numberPixel);
-					COMy = COMY(newRow, newCol, tempArrayOfData, numberPixel);
+					COMy = COMY(newRow, newCol, tempArrayOfData, numberPixel);*/
+
+					newRow = ( newCoord1.x / (float)numberPixel);
+					newCol = ( newCoord1.y / (float)numberPixel);
+
 					blobCounter[numberBloob] = numberPixel;
-					printf("\nBlob %d: %d\t", numberBloob, numberPixel);
-					printf("x: %f\t", COMx);
-					printf("y: %f", COMy);
+					printf("\nBlob %d: %d\t", numberBloob + 1, numberPixel);
+					printf("x: %.2f\t", newRow);
+					printf("y: %.2f", newCol);
 					numberBloob++;
 				}
 			}
