@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 300
-int rowColPixel[3];
+
 void fetchRowCol(char str[], int* size) {
 	int i = 0;
 	char* token = strtok(str, " ");// fetch first token 
@@ -36,55 +36,28 @@ typedef struct {
 }newCoord;
 newCoord newCoord1;
 
-int BlobCount(int N, int M, int r, int c, int* dataToBeRead)
+int BlobCount(int row, int col, int r, int c, int* dataToBeRead)
 {
-	int pixelNum = 0;
 
-	if (r < 0 || r >= N || c < 0 || c >= M)
+	//start-statements
+	if (r < 0 || r >= row || c < 0 || c >= col)
 		return 0;
-	if (*(dataToBeRead + r * M + c) == ' ')
+	if (*(dataToBeRead + r * col + c) == ' ')
 		return 0;
-	if (*(dataToBeRead + r * M + c) == NULL) {
+	if (*(dataToBeRead + r * col + c) == NULL) {
 		return 0;
-	}
+	}//end-statements
 	else
 	{
-		newCoord1.x = newCoord1.x + r;
-		newCoord1.y = newCoord1.y + c;
-		*(dataToBeRead + r * M + c) = ' ';
-		pixelNum = (1 + BlobCount(N, M, r, c - 1, dataToBeRead) + BlobCount(N, M, r, c + 1, dataToBeRead) +
-			BlobCount(N, M, r - 1, c, dataToBeRead) + BlobCount(N, M, r + 1, c, dataToBeRead));
-		return pixelNum;
+		newCoord1.x = newCoord1.x + r;//Get current pixel of X coordinate and Add previous pixel's X coordinate by using newCoord Sturct
+		newCoord1.y = newCoord1.y + c;////Get current pixel of X coordinate and Add previous pixel's X coordinate by using newCoord Sturct
+		*(dataToBeRead + r * col + c) = ' ';
+		return (1 + BlobCount(row, col, r, c - 1, dataToBeRead) + BlobCount(row, col, r, c + 1, dataToBeRead) +
+			BlobCount(row, col, r - 1, c, dataToBeRead) + BlobCount(row, col, r + 1, c, dataToBeRead));
 	}
 }
-double COMX(int newRow, int newCol, int* tempArrayofData, int pixelNum)
-{
-	int coord_Sum_X = 0;
-	double COMx = 0;
-	for (int i = 0; i <= newRow; i++)
-	{
-		for (int j = 0; j <= newCol; j++)
-		{
-			coord_Sum_X += i;
-		}
-	}
-	COMx = coord_Sum_X / (double)pixelNum;
-	return COMx;
-}
-double COMY(int newRow, int newCol, int* tempArrayofData, int pixelNum)
-{
-	int coord_Sum_Y = 0;
-	double COMy = 0;
-	for (int i = 0; i <= newRow; i++)
-	{
-		for (int j = 0; j <= newCol; j++)
-		{
-			coord_Sum_Y += j;
-		}
-	}
-	COMy = coord_Sum_Y / (double)pixelNum;
-	return COMy;
-}
+
+
 void main() {
 
 	FILE* data;
@@ -98,23 +71,21 @@ void main() {
 	int blobCounter[SIZE];
 	if (data == NULL)
 	{
-		printf("Test.c file failed to open.");
+		printf("Test.c file failed to open.");	
 	}
 	else
 	{
-		str = fgets(arr, 300, data); //fetch the first line of file in order to reach row and columns of 2D Array which is the file.
+		str = fgets(arr, 300, data); //fetch the first line of file in order to access row and columns of 2D Array which is the file.
 		fetchRowCol(str, &size); // throw the string which is include first line with first index of adress of size array 
 		int row = size[0];// assign the value of row to variable
 		int col = size[1];//assign the value of column to variable 
-		int* dataToBeRead = (int*)malloc(row * col * sizeof(int));
-		int* tempArrayOfData = (int*)malloc(row * col * sizeof(int));
+		int* dataToBeRead = (int*)malloc(row * col * sizeof(int));//Generate dynamic memory for 2D array which we dont know size of it at beggining.
 		horNumbers(col);//Making horizontal Counter  to top of table
 		horWall(col);//Making horizontal Border to to top of table
 		for (int i = 0; i < row; i++) {
 			printf("%d|", i);//Making vertical border to left side of table
 			for (int j = 0; j < col + 1; j++) {
 				*(dataToBeRead + i * col + j) = fgetc(data);//get the character 1 by 1 and set to into 2D dynamic allacoted array
-				*(tempArrayOfData + i * col + j) = *(dataToBeRead + i * col + j);
 				printf("%c", *(dataToBeRead + i * col + j));//print to log 1 by 1 character from 2D dynamic allacoted array 
 				if (j == col - 1) {
 					printf("| %d", i);//Making vertical border to right side of table
@@ -129,26 +100,26 @@ void main() {
 		float COMx, COMy;
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				newCoord1.x = 0;
-				newCoord1.y = 0;
-				numberPixel = BlobCount(row, col, i, j, dataToBeRead);
+				newCoord1.x = 0;//Set to 0 newCoord1.x for each bloob's sum X coordinates of their pixels at initial
+				newCoord1.y = 0;//Set to 0 newCoord1.y for each bloob's sum Y coordinates of their pixels at initial
+				numberPixel = BlobCount(row, col, i, j, dataToBeRead);// return number of pixels for each bloob.Additevly, struct sum of X coordinates for each bloob's pixels and
+				                                                      //sum of Y coordinates for each bloob's pixels
 
 				if (numberPixel > 0)
 				{
 					
-					/*newRow = newCoord1.x;
-					newCol = newCoord1.y;
-					COMx = COMX(newRow, newCol, tempArrayOfData, numberPixel);
-					COMy = COMY(newRow, newCol, tempArrayOfData, numberPixel);*/
-
-					newRow = ( newCoord1.x / (float)numberPixel);
+					newRow = ( newCoord1.x / (float)numberPixel); 
 					newCol = ( newCoord1.y / (float)numberPixel);
 
 					blobCounter[numberBloob] = numberPixel;
+
+					//Print Process
 					printf("\nBlob %d: %d\t", numberBloob + 1, numberPixel);
 					printf("x: %.2f\t", newRow);
 					printf("y: %.2f", newCol);
+					//End-Print-Process
 					numberBloob++;
+
 				}
 			}
 		}
