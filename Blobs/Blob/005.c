@@ -79,50 +79,63 @@ void main() {
 		fetchRowCol(str, &size); // throw the string which is include first line with first index of adress of size array 
 		int row = size[0];// assign the value of row to variable
 		int col = size[1];//assign the value of column to variable 
-		int* dataToBeRead = (int*)malloc(row * col * sizeof(int));//Generate dynamic memory for 2D array which we dont know size of it at beggining.
-		horNumbers(col);//Making horizontal Counter  to top of table
-		horWall(col);//Making horizontal Border to to top of table
-		for (int i = 0; i < row; i++) {
-			printf("%d|", i);//Making vertical border to left side of table
-			for (int j = 0; j < col + 1; j++) {
-				*(dataToBeRead + i * col + j) = fgetc(data);//get the character 1 by 1 and set to into 2D dynamic allacoted array
-				printf("%c", *(dataToBeRead + i * col + j));//print to log 1 by 1 character from 2D dynamic allacoted array 
-				if (j == col - 1) {
-					printf("| %d", i);//Making vertical border to right side of table
-				}//end-if
-			}//end-for-inner
-		}//end-for-outer 
-		horWall(col);////Making horizontal Counter  to top of table
-		horNumbers(col);//Making horizontal Border to bottom of table
-		printf("\n");
-		int* ptr;
-		float newCol, newRow;
-		float COMx, COMy;
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
-				newCoord1.x = 0;//Set to 0 newCoord1.x for each bloob's sum X coordinates of their pixels at initial
-				newCoord1.y = 0;//Set to 0 newCoord1.y for each bloob's sum Y coordinates of their pixels at initial
-				numberPixel = BlobCount(row, col, i, j, dataToBeRead);// return number of pixels for each bloob.Additevly, struct sum of X coordinates for each bloob's pixels and
-				                                                      //sum of Y coordinates for each bloob's pixels
-
-				if (numberPixel > 0)
+		if (row <= 0 || col <= 0) {
+			printf("WARNING! The provided sizes does not generate 2D Array! Please assign valid value to row and colmun! \n");
+		}
+		else
+		{
+			int* dataToBeRead = (int*)malloc(row * col * sizeof(int));//Generate dynamic memory for 2D array which we dont know size of it at beggining.
+			horNumbers(col);//Making horizontal Counter  to top of table
+			horWall(col);//Making horizontal Border to to top of table
+			for (int i = 0; i < row; i++) {
+				if (i >= 10) {
+					printf("%d|", i%10);
+				}
+				else
 				{
-					
-					newRow = ( newCoord1.x / (float)numberPixel); 
-					newCol = ( newCoord1.y / (float)numberPixel);
+					printf("%d|", i);//Making vertical border to left side of table
+				}
+				for (int j = 0; j < col + 1; j++) {
+					*(dataToBeRead + i * col + j) = fgetc(data);//get the character 1 by 1 and set to into 2D dynamic allacoted array
+					printf("%c", *(dataToBeRead + i * col + j));//print to log 1 by 1 character from 2D dynamic allacoted array 
+					if (j == col - 1) {
+						printf("|%d", i);//Making vertical border to right side of table
+					}//end-if
+				}//end-for-inner
+			}//end-for-outer 
+			horWall(col);////Making horizontal Counter  to top of table
+			horNumbers(col);//Making horizontal Border to bottom of table
+			printf("\n");
+			float newCol, newRow;
+			float COMx, COMy;
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++) {
+					newCoord1.x = 0;//Set to 0 newCoord1.x for each bloob's sum X coordinates of their pixels at initial
+					newCoord1.y = 0;//Set to 0 newCoord1.y for each bloob's sum Y coordinates of their pixels at initial
+					numberPixel = BlobCount(row, col, i, j, dataToBeRead);// return number of pixels for each bloob.Additevly, struct sum of X coordinates for each bloob's pixels and
+																		  //sum of Y coordinates for each bloob's pixels
 
-					blobCounter[numberBloob] = numberPixel;
+					if (numberPixel > 1)
+					{
 
-					//Print Process
-					printf("\nBlob %d: %d\t", numberBloob + 1, numberPixel);
-					printf("x: %.2f\t", newRow);
-					printf("y: %.2f", newCol);
-					//End-Print-Process
-					numberBloob++;
+						newRow = (newCoord1.x / (float)numberPixel);
+						newCol = (newCoord1.y / (float)numberPixel);
 
+						blobCounter[numberBloob] = numberPixel;
+
+						//Print Process
+						printf("\nBlob %d: %d\t", numberBloob + 1, numberPixel);
+						printf("x: %.2f\t", newRow);
+						printf("y: %.2f", newCol);
+						//End-Print-Process
+						numberBloob++;
+
+					}
 				}
 			}
+			if (numberBloob == 0) printf("\nThe 2D Array does not have any bloob!\n");
 		}
+		
 	}
 	fclose(data);
 	printf("\n");
