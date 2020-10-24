@@ -15,7 +15,7 @@ void fetchRowCol(char str[], int* size) {
 }
 void horNumbers(int col) {
 	int number;
-	printf("\n  ");
+	printf("  ");
 	for (int i = 0; i < col; i++)
 	{
 		number = i % 10;
@@ -32,13 +32,7 @@ void horWall(int col) {
 	printf("+");
 	printf("\n");
 }
-//
-//int strcmp(const char* str1, const char* str2) {
-//	for (int i = 0; i < sizeof(*str1); i++)
-//	{
-//
-//	}
-//}
+
 int BlobCount(int row, int col, int r, int c, int* dataToBeRead, float* COMx, float* COMy)
 {
 
@@ -52,7 +46,7 @@ int BlobCount(int row, int col, int r, int c, int* dataToBeRead, float* COMx, fl
 	}//end-statements
 	else
 	{
-		*COMx =  *COMx + r;//Get current pixel of X coordinate and Add previous pixel's X coordinate by using newCoord Sturct
+		*COMx = *COMx + r;//Get current pixel of X coordinate and Add previous pixel's X coordinate by using newCoord Sturct
 		*COMy = *COMy + c;////Get current pixel of X coordinate and Add previous pixel's X coordinate by using newCoord Sturct
 		*(dataToBeRead + r * col + c) = ' ';
 		return (1 + BlobCount(row, col, r, c - 1, dataToBeRead, COMx, COMy) + BlobCount(row, col, r, c + 1, dataToBeRead, COMx, COMy) +
@@ -60,51 +54,23 @@ int BlobCount(int row, int col, int r, int c, int* dataToBeRead, float* COMx, fl
 	}
 }
 
-// Function that compares the two string 
-//int compareStrings(char* x, char* y)
-//{
-//	int flag = 0;
-//
-//	// Iterate a loop till the end 
-//	// of both the strings 
-//	while (*x != '\0' || *y != '\0') {
-//		if (*x == *y) {
-//			x++;
-//			y++;
-//		}
-//
-//		// If two characters are not same 
-//		// set to flag = 1
-//		else if ((*x == '\0' && *y != '\0') || (*x != '\0' && *y == '\0') || *x != *y) {
-//			flag = 1;
-//		}
-//	}
-//
-//	// If two strings are exactly same 
-// 
-//	if (flag == 1) {
-//		return 1;
-//	}
-//	else
-//	{
-//		return 0;
-//	}
-//}
-
-
 void main() {
-	
+
 	FILE* data;
-	int err = fopen_s(&data, "blobs1.txt", "r");
 	char arr[SIZE];
 	char* str;
 	int* size[2];
 	int numberPixel;
 	int numberBloob = 0;
 	int blobCounter[SIZE];//dinamik yapılcak!!!
+	char fileName[100];
+
+	printf("Enter the file name: ");
+	gets(fileName);
+	int err = fopen_s(&data, fileName, "r");
 	if (data == NULL)
 	{
-		printf("Test.c file failed to open.");
+		printf("%s file failed to open.", fileName);
 	}
 	else
 	{
@@ -118,6 +84,7 @@ void main() {
 		else
 		{
 			int* dataToBeRead = (int*)malloc(row * col * sizeof(int));//Generate dynamic memory for 2D array which we dont know size of it at beggining.
+			printf("\n");
 			horNumbers(col);//Making horizontal Counter  to top of table
 			horWall(col);//Making horizontal Border to to top of table
 			for (int i = 0; i < row; i++) {
@@ -140,38 +107,36 @@ void main() {
 			horNumbers(col);//Making horizontal Border to bottom of table
 			printf("\n");
 			float massOfX, massOfY;
-			float *COMx, *COMy;
+			float* COMx, * COMy;
 			COMx = &massOfX;
 			COMy = &massOfY;
+			printf("+------+------------+---------+------------+\n");
+			printf("| BLOB | NoOfPixels | CoM Row | Com Column |\n");
+			printf("+------+------------+---------+------------+\n");
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < col; j++) {
 					*COMx = 0;//Set to 0 newCoord1.x for each bloob's sum X coordinates of their pixels at initial
-					*COMy= 0;//Set to 0 newCoord1.y for each bloob's sum Y coordinates of their pixels at initial
-					numberPixel = BlobCount(row, col, i, j, dataToBeRead, COMx, COMy);// return number of pixels for each bloob.Additevly, struct sum of X coordinates for each bloob's pixels and
-																		  //sum of Y coordinates for each bloob's pixels
-
+					*COMy = 0;//Set to 0 newCoord1.y for each bloob's sum Y coordinates of their pixels at initial
+					numberPixel = BlobCount(row, col, i, j, dataToBeRead, COMx, COMy);// return number of pixels for each bloob.Additevly,
+																					  //struct sum of X coordinates for each bloob's pixels and
+																					  //sum of Y coordinates for each bloob's pixels
 					if (numberPixel > 1)
 					{
-
 						blobCounter[numberBloob] = numberPixel;
 						massOfX = massOfX / (float)(numberPixel);
 						massOfY = massOfY / (float)(numberPixel);
 						//Print Process
-						printf("\nBlob %d: %d\t", numberBloob + 1, numberPixel);
-						printf("x: %.2f\t", massOfX);
-						printf("y: %.2f", massOfY);
+						printf("|%6d| %11d| %8.2f| %11.2f|\n", numberBloob + 1, numberPixel, massOfX, massOfY);
 						//End-Print-Process
 						numberBloob++;
-
 					}
 				}
 			}
 			if (numberBloob == 0) printf("\nThe 2D Array does not have any bloob!\n");
+			printf("+------+------------+---------+------------+\n");
 		}
-
 	}
 	fclose(data);
 	printf("\n");
 	system("pause");
-
 }

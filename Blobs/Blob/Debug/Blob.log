@@ -1,1 +1,11 @@
-﻿  Blob.vcxproj -> D:\001_Lab_Assigment\Blobs\Debug\Blob.exe
+﻿  006.c
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(9,22): warning C4013: 'strtok' undefined; assuming extern returning int
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(13,28): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(9,1): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(44,43): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(69,6): warning C4013: 'gets' undefined; assuming extern returning int
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(78,25): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *(*)[2]'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(78,25): warning C4024: 'fetchRowCol': different types for formal and actual parameter 2
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(79,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Blob\006.c(80,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+  Blob.vcxproj -> C:\Users\yasem\Desktop\001_Lab_Assigment\Blobs\Debug\Blob.exe
